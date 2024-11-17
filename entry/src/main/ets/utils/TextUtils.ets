@@ -33,20 +33,20 @@ export class TextUtils {
 
   // 参考 `android.text.TextUtils.htmlEncode`
   static htmlEncode(str: string): string {
-    return str.replace("<", "&lt;")
-      .replace(">", "&gt;")
-      .replace("&", "&amp;")
-      .replace("'", "&#39;")
-      .replace("\"", "&quot;")
+    return str.replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll("&", "&amp;")
+      .replaceAll("'", "&#39;")
+      .replaceAll("\"", "&quot;")
   }
 
   // 参考 `android.text.TextUtils.htmlEncode`
   static htmlDecode(str: string): string {
-    return str.replace("&lt;", "<")
-      .replace("&gt;", ">")
-      .replace("&amp;", "&")
-      .replace("&#39;", "'")
-      .replace("&apos;", "'")// 兼容 &apos;
-      .replace("&quot;", "\"")
+    return str.replaceAll("&lt;", "<")
+      .replaceAll("&gt;", ">")
+      .replaceAll("&amp;", "&")
+      .replaceAll("&#39;", "'")
+      .replaceAll("&apos;", "'")// 兼容 &apos;
+      .replaceAll("&quot;", "\"")//
   }
 }
