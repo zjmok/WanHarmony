@@ -48,5 +48,12 @@ export class TextUtils {
       .replaceAll("&#39;", "'")
       .replaceAll("&apos;", "'")// 兼容 &apos;
       .replaceAll("&quot;", "\"")//
+        //
+      .replaceAll("&ldquo;", "“")// U+201C
+      .replaceAll("&rdquo;", "”")// U+201D
+      .replaceAll("&lsquo;", "‘")// U+2018
+      .replaceAll("&rsquo;", "’")// U+2019
+        //
+      .replaceAll("&mdash;", "—") // U+2014
   }
 }
