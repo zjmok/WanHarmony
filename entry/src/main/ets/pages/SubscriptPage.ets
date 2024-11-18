@@ -1,4 +1,4 @@
-import { WanService } from '../api/service/WanService'
+import { WanService } from '../api/services/WanService'
 import { ArticlesTree, ArticlesTreeItem } from '../data/ArticlesTree'
 import { TextUtils } from '../utils/TextUtils'
 import { ArticleListComponent } from './components/ArticleListComponent'

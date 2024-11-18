@@ -1,6 +1,6 @@
-import { SupperUserInfo } from '../data/UserInfo';
-import { UserService } from '../api/service/UserService';
-import { ApiException } from '../api/ApiResult';
+import { SuperUserInfo } from '../data/UserInfo';
+import { UserService } from '../api/services/UserService';
+import { ApiException } from '../api/ApiException';
 import { toast } from '../utils/ToastUtils';
 
 let service: UserService
@@ -10,11 +10,11 @@ export function LoginPageBuilder(name: string, param: string) {
   LoginPage()
 }
 
-PersistentStorage.persistProp<SupperUserInfo>("supperUserInfo", null)
+PersistentStorage.persistProp<SuperUserInfo>("superUserInfo", null)
 
 @Component
 export struct LoginPage {
-  @StorageLink('supperUserInfo') supperUserInfo: SupperUserInfo | null = null;
+  @StorageLink('superUserInfo') superUserInfo: SuperUserInfo | null = null;
   pathStack: NavPathStack = new NavPathStack()
   private username: string = ''
   private password: string = ''
@@ -80,8 +80,8 @@ export struct LoginPage {
       this.password
     ).then(result => {
       // 登录接口返回的数据不全 后续获取完整数据
-      this.supperUserInfo = new SupperUserInfo()
-      this.supperUserInfo.userInfo = result!
+      this.superUserInfo = new SuperUserInfo()
+      this.superUserInfo.userInfo = result!
       this.pathStack.pop({ result: "我是从 LoginPage 返回的数据" })
     }).catch((err: Error) => {
       if (err instanceof ApiException) {
@@ -89,7 +89,7 @@ export struct LoginPage {
       } else {
         toast("登录失败")
       }
-      console.error(`PersonComponent：err = ${err}`);
+      console.error(`LoginPage：err = ${err}`);
     })
   }
 }

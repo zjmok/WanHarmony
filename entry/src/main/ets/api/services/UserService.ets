@@ -1,4 +1,4 @@
-import { SupperUserInfo, UserInfo } from '../../data/UserInfo';
+import { SuperUserInfo, UserInfo } from '../../data/UserInfo';
 import { ApiPath } from '../ApiPath';
 import ApiService from '../ApiService';
 
@@ -26,9 +26,9 @@ export class UserService extends ApiService {
   }
 
   // 个人信息接口
-  async getUserInfo(): Promise<SupperUserInfo | null> {
-    let result = this.request<SupperUserInfo>('get', ApiPath.USER_INFO);
-    AppStorage.setOrCreate("SupperUserInfo", JSON.stringify(result))
+  async getUserInfo(): Promise<SuperUserInfo | null> {
+    let result = this.request<SuperUserInfo>('get', ApiPath.USER_INFO);
+    AppStorage.setOrCreate("SuperUserInfo", JSON.stringify(result))
     return result;
   }
 

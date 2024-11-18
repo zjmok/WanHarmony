@@ -1,4 +1,4 @@
-export class SupperUserInfo {
+export class SuperUserInfo {
   coinInfo: CoinInfo | null = null;
   collectArticleInfo: CollectArticleInfo | null = null;
   userInfo: UserInfo = new UserInfo();

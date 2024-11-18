@@ -1,16 +1,16 @@
-import { UserService } from '../api/service/UserService';
-import { SupperUserInfo } from '../data/UserInfo';
+import { UserService } from '../api/services/UserService';
+import { SuperUserInfo } from '../data/UserInfo';
 import { toast } from '../utils/ToastUtils';
 import { log } from '../utils/LogUtils';
 
 let service: UserService
 
-PersistentStorage.persistProp<SupperUserInfo>("supperUserInfo", null)
+PersistentStorage.persistProp<SuperUserInfo>("superUserInfo", null)
 
 @Component
 export struct PersonComponent {
   pathStack: NavPathStack | null = null
-  @StorageLink('supperUserInfo') supperUserInfo: SupperUserInfo | null = null;
+  @StorageLink('superUserInfo') superUserInfo: SuperUserInfo | null = null;
 
   aboutToAppear(): void {
     service = new UserService();
@@ -21,29 +21,28 @@ export struct PersonComponent {
     Scroll() {
       Column() {
         Flex({ alignItems: ItemAlign.Center }) {
-          Image(this.supperUserInfo?.userInfo.icon ? this.supperUserInfo?.userInfo.icon : $r("app.media.app_icon"))
+          Image(this.superUserInfo?.userInfo.icon ? this.superUserInfo?.userInfo.icon : $r("app.media.app_icon"))
             .borderRadius(10)
             .width(80)
             .aspectRatio(1)// 1:1
             .flexShrink(3)
 
           Column() {
-            Text(this.supperUserInfo?.userInfo.nickname ? this.supperUserInfo?.userInfo.nickname : "未登录")
+            Text(this.superUserInfo?.userInfo.nickname ? this.superUserInfo?.userInfo.nickname : "未登录")
 
             Flex({ wrap: FlexWrap.Wrap }) {
-              Text(`用户名：${this.supperUserInfo?.userInfo.username ? this.supperUserInfo?.userInfo.username :
-                "null"}`)
+              Text(`用户名：${this.superUserInfo?.userInfo.username ? this.superUserInfo?.userInfo.username : "null"}`)
                 .fontSize(14)
                 .fontColor($r("app.color.secondaryText"))
                 .margin({ right: 20, top: 10 })
-              Text(`ID：${this.supperUserInfo?.userInfo.id ? this.supperUserInfo?.userInfo.id : "-1"}`)
+              Text(`ID：${this.superUserInfo?.userInfo.id ? this.superUserInfo?.userInfo.id : "-1"}`)
                 .fontSize(14)
                 .fontColor($r("app.color.secondaryText"))
                 .margin({ top: 10 })
             }
             .margin({ top: 10 })
 
-            Text(`邮箱：${this.supperUserInfo?.userInfo.email ? this.supperUserInfo?.userInfo.email : "null"}`)
+            Text(`邮箱：${this.superUserInfo?.userInfo.email ? this.superUserInfo?.userInfo.email : "null"}`)
               .fontSize(14)
               .fontColor($r("app.color.secondaryText"))
               .margin({ top: 20 })
@@ -67,7 +66,7 @@ export struct PersonComponent {
           bottom: 30,
         })
         .onClick(() => {
-          if (!this.supperUserInfo) {
+          if (!this.superUserInfo) {
             AlertDialog.show(
               {
                 title: '提示',
@@ -108,11 +107,11 @@ export struct PersonComponent {
           Text("积分排行")
             .fontSize(16)
           Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap, justifyContent: FlexAlign.End }) {
-            Text(`积分：${this.supperUserInfo?.coinInfo?.coinCount ? this.supperUserInfo?.coinInfo?.coinCount : "-1"}`)
+            Text(`积分：${this.superUserInfo?.coinInfo?.coinCount ? this.superUserInfo?.coinInfo?.coinCount : "-1"}`)
               .fontSize(14)
               .fontColor($r("app.color.secondaryText"))
               .margin({ left: 10 })
-            Text(`排行：${this.supperUserInfo?.coinInfo?.rank ? this.supperUserInfo?.coinInfo?.rank : "-1"}`)
+            Text(`排行：${this.superUserInfo?.coinInfo?.rank ? this.superUserInfo?.coinInfo?.rank : "-1"}`)
               .fontSize(14)
               .fontColor($r("app.color.secondaryText"))
               .margin({ left: 10 })
@@ -136,8 +135,8 @@ export struct PersonComponent {
         Row() {
           Text("收藏文章")
           Blank()
-          Text(`收藏量：${this.supperUserInfo?.collectArticleInfo?.count ?
-            this.supperUserInfo?.collectArticleInfo?.count : "-1"} 篇`)
+          Text(`收藏量：${this.superUserInfo?.collectArticleInfo?.count ?
+            this.superUserInfo?.collectArticleInfo?.count : "-1"} 篇`)
             .fontSize(14)
             .fontColor($r("app.color.secondaryText"))
             .margin({ left: 10 })
@@ -248,10 +247,10 @@ export struct PersonComponent {
 
   getUserInfo() {
     service.getUserInfo().then(result => {
-      this.supperUserInfo = result
-      console.log(`PersonComponent：result = ${result}`);
+      this.superUserInfo = result
+      console.log(`PersonPage：result = ${result}`);
     }).catch((err: Error) => {
-      console.error(`PersonComponent：err = ${err}`);
+      console.error(`PersonPage：err = ${err}`);
     })
   }
 }

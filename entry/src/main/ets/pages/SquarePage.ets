@@ -1,4 +1,4 @@
-import { WanService } from '../api/service/WanService';
+import { WanService } from '../api/services/WanService';
 import { log } from '../utils/LogUtils';
 import { ArticleListComponent as ArticleListComponent } from './components/ArticleListComponent';
 

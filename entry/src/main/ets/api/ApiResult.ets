@@ -1,11 +1,4 @@
-export class ApiException extends Error {
-  errorCode: number
-
-  constructor(errorCode: number, errorMsg: string) {
-    super(errorMsg);
-    this.errorCode = errorCode
-  }
-}
+import { ApiException } from "./ApiException";
 
 export class ApiResult<T> {
   errorCode: number = 0

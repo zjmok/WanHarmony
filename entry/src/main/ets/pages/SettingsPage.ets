@@ -1,5 +1,5 @@
-import { SupperUserInfo } from '../data/UserInfo';
-import { UserService } from '../api/service/UserService';
+import { SuperUserInfo } from '../data/UserInfo';
+import { UserService } from '../api/services/UserService';
 import { AppUtils } from '../utils/AppUtils';
 import { toast } from '../utils/ToastUtils';
 import { log } from '../utils/LogUtils';
@@ -11,11 +11,11 @@ export function SettingsPageBuilder(name: string, param: string) {
   SettingsPage()
 }
 
-PersistentStorage.persistProp<SupperUserInfo>("supperUserInfo", null)
+PersistentStorage.persistProp<SuperUserInfo>("superUserInfo", null)
 
 @Component
 export struct SettingsPage {
-  @StorageLink('supperUserInfo') supperUserInfo: SupperUserInfo | null = null;
+  @StorageLink('superUserInfo') superUserInfo: SuperUserInfo | null = null;
   pathStack: NavPathStack = new NavPathStack()
 
   aboutToAppear(): void {
@@ -157,7 +157,7 @@ export struct SettingsPage {
           })
 
           // 已登录才显示
-          if (this.supperUserInfo) {
+          if (this.superUserInfo) {
             Row() {
               Text("退出")
             }
@@ -213,7 +213,7 @@ export struct SettingsPage {
 
   logout() {
     service.logout().then(result => {
-      this.supperUserInfo = null
+      this.superUserInfo = null
       console.log("已退出登录");
     }).catch((err: Error) => {
       console.error(`退出登录请求失败：\n${err?.message}`);

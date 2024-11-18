@@ -1,4 +1,4 @@
-import { WanService } from '../api/service/WanService';
+import { WanService } from '../api/services/WanService';
 import { DataX } from '../data/ArticlesTree';
 import { ArticleComponent } from './components/ArticleComponent';
 import { BannerItem } from '../data/BannerItem';

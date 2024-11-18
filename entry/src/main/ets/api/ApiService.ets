@@ -1,5 +1,6 @@
 import { http } from '@kit.NetworkKit';
-import { ApiException, ApiResult } from './ApiResult';
+import { ApiException } from './ApiException';
+import { ApiResult } from './ApiResult';
 import { ApiPath } from './ApiPath';
 import { TextUtils } from '../utils/TextUtils';
 import { CookiesUtils } from './CookiesUtils';
@@ -49,7 +50,7 @@ class ApiService {
       PersistentStorage.persistProp<string>("cookies", "")
       let cookies = AppStorage.get<string>("cookies") // cookies get
       if (cookies) {
-        hilog.info(0, "network", `cookies: ${cookies}`)
+        hilog.info(0, "network", `request cookies: ${cookies}`)
       }
 
       httpRequest.request(
@@ -73,7 +74,7 @@ class ApiService {
                 // 当 cookies 有值时才进行保存
                 // hilog.info(0, "network", `data.cookies = \n${data.cookies}`)
                 let cookies = CookiesUtils.formatWanAndroidCookies(data.cookies)
-                hilog.info(0, "network", `response cookies = ${cookies}`)
+                hilog.info(0, "network", `response cookies: ${cookies}`)
                 AppStorage.setOrCreate("cookies", cookies) // cookies save
               }
               // 解析数据
