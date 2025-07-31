@@ -1,4 +1,5 @@
 {
+  // https://developer.huawei.com/consumer/cn/doc/harmonyos-releases/deveco-studio-new-features-500-release
   "modelVersion": "5.0.0",
   "description": "Please describe the basic information.",
   "dependencies": {
