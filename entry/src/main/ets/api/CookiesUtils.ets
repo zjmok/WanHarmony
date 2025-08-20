@@ -1,7 +1,7 @@
 export class CookiesUtils {
   static formatWanAndroidCookies(cookies: string): string {
     /*
-    这是某次返回的 cookies。可见 一共有5个，index=5 的是名称，index=6 的是值
+    这是某次返回的 cookies。可见 一共有7个，index=5 的是名称，index=6 的是值，
 ```
 #HttpOnly_www.wanandroid.com	FALSE	/	TRUE	0	JSESSIONID	84D02569FC8883FD676A1439F8F6CD909527
  www.wanandroid.com	FALSE	/	FALSE	1732222984	loginUserName	cymok
@@ -9,6 +9,11 @@ export class CookiesUtils {
  .wanandroid.com	TRUE	/	FALSE	1732222984	loginUserName_wanandroid_com	cymok
  .wanandroid.com	TRUE	/	FALSE	1732222984	token_pass_wanandroid_com	7c934a41fee93d67b5bcc9c25d498f48
 ```
+    至少需要保存2个键值对，其它在这里用不到
+    {
+      "JSESSIONID": "84D02569FC8883FD676A1439F8F6CD909527"
+      "token_pass": "7c934a41fee93d67b5bcc9c25d498f48",
+    }
     */
     try {
       const cookieArray = cookies.trim().split('\n')
