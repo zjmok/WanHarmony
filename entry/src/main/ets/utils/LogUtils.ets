@@ -3,7 +3,7 @@ import hilog from '@ohos.hilog'
 let domain = 0
 
 let showLog = true
-let TAG: string = "WanHarmony"
+let TAG: string = "WanOHOS"
 
 export function log(message: string, tag: string = TAG) {
   if (!showLog) {
