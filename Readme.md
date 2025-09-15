@@ -59,6 +59,28 @@ Web().domStorageAccess(true) // 开启 DOM 存储，否则 微信文章 会显�
 
 ### 适配 Tablet、Foldable
 
-利用 Flex 组件，适配了不同宽度的页面。PersonPage 已经适配好。
+利用 Flex 组件适配 UI
+
+### 使用 DevEco 5.1.1 后出现莫名的问题
+
+```
+Stack({ alignContent: Alignment.Center }) {
+  Text("空页面")
+    .fontSize(25)
+}
+```
+
+运行时会报错 `Error Message: ';' expected`
+
+然后换行处理就没问题了
+
+```
+Stack({ alignContent: Alignment.Center })
+// 这里换行后就可以正常运行
+{
+  Text("空页面")
+    .fontSize(25)
+}
+```
 
 ### 

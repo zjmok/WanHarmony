@@ -36,19 +36,23 @@ export struct HistoryPage {
         itemLayout: (item, index) => this.itemLayout(item as WebData, index),
         slideRightMenuLayout: (index) => this.rightMenuLayout(index),
         emptyLayout: () => {
-          Stack({ alignContent: Alignment.Center }) {
+          Stack({ alignContent: Alignment.Center })
+          // DevEco 5.1.1 这里不换行会报错，不知道为什么
+          {
             Text("空页面")
               .fontSize(25)
           }
         },
         errorLayout: () => {
-          Stack({ alignContent: Alignment.Center }) {
+          Stack({ alignContent: Alignment.Center })
+          // DevEco 5.1.1 这里不换行会报错，不知道为什么
+          {
             Text("错误页面")
               .fontSize(25)
           }
         },
         slideMenuAttr: (attr) => {
-          //设置侧滑属性
+          // 设置侧滑属性
           attr.rightMenuWidth = 80
         },
         controller: this.controller,
