@@ -4,7 +4,7 @@ api 和官方网站 <https://www.wanandroid.com>
 
 "compatibleSdkVersion": "5.0.0(12)"
 
-开发工具 Deveco Studio 5.0.3, API 12
+开发工具 Deveco Studio 5.0.3 +
 
 ## 效果
 
