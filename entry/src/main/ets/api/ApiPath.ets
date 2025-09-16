@@ -1,5 +1,5 @@
 export class ApiPath {
-  static readonly BASE_URL: string = "https://www.wanandroid.com/"
+  static readonly BASE_URL: string = "https://www.wanandroid.com"
   // 注册
   static readonly USER_REGISTER = '/user/register';
   // 登录

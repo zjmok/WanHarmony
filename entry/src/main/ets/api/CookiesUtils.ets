@@ -1,5 +1,5 @@
 export class CookiesUtils {
-  static formatWanAndroidCookies(cookies: string): string {
+  static formatCookies(cookies: string): string {
     /*
     这是某次返回的 cookies。可见 一共有7个，index=5 的是名称，index=6 的是值，
 ```
