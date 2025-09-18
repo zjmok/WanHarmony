@@ -2,6 +2,7 @@ import { WanService } from '../api/services/WanService';
 import { ArticlesTree, ArticlesTreeItem } from '../data/ArticlesTree';
 import { TextUtils } from '../utils/TextUtils';
 import { ArticleListComponent } from './components/ArticleListComponent';
+import { getSubTab } from './SquarePage';
 
 let service: WanService
 
@@ -11,7 +12,6 @@ PersistentStorage.persistProp<ArticlesTree>("projectArticlesTree", null)
 export struct ProjectComponent {
   pathStack: NavPathStack | null = null
   @StorageLink("projectArticlesTree") articlesTree: ArticlesTree | null = null
-  private controller = new TabsController()
 
   aboutToAppear(): void {
     service = new WanService()
@@ -21,9 +21,7 @@ export struct ProjectComponent {
   }
 
   build() {
-    Tabs({
-      controller: this.controller,
-    }) {
+    Tabs() {
       TabContent() {
         ArticleListComponent({
           pathStack: this.pathStack,
@@ -32,7 +30,7 @@ export struct ProjectComponent {
           },
         })
       }
-      .tabBar("最新项目")
+      .tabBar(getSubTab("最新项目"))
 
       ForEach(this.articlesTree, (articlesTreeItem: ArticlesTreeItem, index: number) => {
         TabContent() {
@@ -43,7 +41,7 @@ export struct ProjectComponent {
             },
           })
         }
-        .tabBar(TextUtils.htmlDecode(articlesTreeItem.name))
+        .tabBar(getSubTab(TextUtils.htmlDecode(articlesTreeItem.name)))
       })
     }
     .barMode(BarMode.Scrollable) // TabBar 滚动模式

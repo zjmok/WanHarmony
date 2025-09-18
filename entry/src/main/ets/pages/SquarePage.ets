@@ -7,7 +7,6 @@ let service: WanService
 @Component
 export struct SquareComponent {
   pathStack: NavPathStack | null = null
-  private controller = new TabsController()
 
   aboutToAppear(): void {
     service = new WanService()
@@ -30,9 +29,7 @@ export struct SquareComponent {
           log("跳转 SearchPage")
         })
 
-      Tabs({
-        controller: this.controller,
-      }) {
+      Tabs() {
         TabContent() {
           ArticleListComponent({
             pathStack: this.pathStack,
@@ -41,7 +38,7 @@ export struct SquareComponent {
             },
           })
         }
-        .tabBar("广场")
+        .tabBar(getSubTab("广场"))
 
         TabContent() {
           ArticleListComponent({
@@ -51,9 +48,19 @@ export struct SquareComponent {
             },
           })
         }
-        .tabBar("问答")
+        .tabBar(getSubTab("问答"))
       }
       .barMode(BarMode.Scrollable) // TabBar 滚动模式
     }
   }
+}
+
+// 设置 tab 颜色
+export function getSubTab(title: string): SubTabBarStyle {
+  return new SubTabBarStyle(title).labelStyle({
+    unselectedColor: $r("app.color.color_back"),
+    selectedColor: $r("app.color.color_fore")
+  }).indicator({
+    color: $r("app.color.color_fore")
+  })
 }

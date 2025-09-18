@@ -3,16 +3,27 @@ import { PersonComponent as PersonPage } from './PersonPage';
 import { ProjectComponent as ProjectPage } from './ProjectPage';
 import { SquareComponent as SquarePage } from './SquarePage';
 import { SubscriptComponent as SubscriptPage } from './SubscriptPage';
+import { CommonModifier } from '@kit.ArkUI';
+import { alsoKt } from '../utils/MyUtils';
 
 @Entry
 @Component
 struct Index {
   pathStack: NavPathStack = new NavPathStack();
   @State currentIndex: number = 0
+  private controller = new TabsController()
 
   build() {
     Navigation(this.pathStack) {
-      Tabs() {
+      Tabs({
+        // index 设置默认 Index, 这里是组件内部的 Index, 需要配合 UI 的 Index 即 currentIndex
+        index: this.currentIndex,
+        controller: this.controller,
+        barModifier: alsoKt(new CommonModifier(), (it) => {
+          // CommonModifier 的 clip = false 可以设置超出父布局显示
+          it.clip(false)
+        })
+      }) {
         TabContent() {
           HomePage({ pathStack: this.pathStack })
         }
@@ -67,5 +78,20 @@ struct Index {
     .width('100%')
     .height(50)
     .justifyContent(FlexAlign.Center)
+    .offset({ y: this.currentIndex === targetIndex ? -5 : 0 }) // 位移
+    .scale(this.currentIndex === targetIndex ? { x: 1.2, y: 1.2 } : {}) // 缩放
+    // .offset({ y: this.currentIndex === targetIndex ? 2 : 0 }) // 位移
+    // .rotate({
+    //   angle: 90, // 旋转角度
+    //   centerX: '50%', // 旋转中心x坐标
+    //   centerY: '50%',
+    // }) // 旋转
+    // .scale({
+    //   x: 1.2,
+    //   y: 1.2,
+    //   centerX: '50%', // 缩放中心
+    //   centerY: '50%'
+    // }) // 缩放
+    // .opacity(0.5) // 透明度
   }
 }
